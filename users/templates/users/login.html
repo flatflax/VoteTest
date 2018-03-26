@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>用户注册</title>
+</head>
+<h1>Login</h1>
+
+<form action="{% url 'users:signup' %}" method="post">
+    <div id="text">
+        {% csrf_token %}
+        <div>
+            <label >username</label>
+            <input type="text" name="name_username" />
+        </div>
+
+        <div>
+            <label >password</label>
+            <input type="text" name="name_password" />
+        </div>
+
+        <div>
+            <label >email</label>
+            <input type="text" name="name_email" />
+        </div>
+
+        <input type="submit" value="SignUp" />
+    </div>
+</form>
+
+<div id="ctx">
+    {% if username %}
+        <li>{{ username }}</li>
+    {% else %}
+        <li>no text</li>
+    {% endif %}
+</div>

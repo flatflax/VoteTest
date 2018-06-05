@@ -1,14 +1,33 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+{% extends "polls/base/navbar.html" %}
+  {% block context %}
 
-<h1>{{ question.question_text }}</h1>
+	<h1>{{ question.question_text }}</h1>
 
-<div id="content">
-<ul>
-{% for choice in question.choice_set.all %}
-	<li id="vote_text">{{ choice.choice_text }} -- {{choice.votes}} vote{{ choice.votes|pluralize }}</li>
-{% endfor %}
-</ul>
-</div>
+	<div id="content">
+	{% if error_message %}
+		<p><strong>{{ error_message }}</strong></p>
+	{% endif %}
 
-<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+	<div class="table-responsive">
+		<table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>choice</th>
+                  <th>votes</th>
+                </tr>
+              </thead>
+              <tbody>
+              	{% for choice in question.choice_set.all %}
+              	<tr>
+              		<td>{{ choice.choice_text }}</td>
+              		<td>{{ choice.votes }}</td>
+              	</tr>
+              	{% endfor %}
+              </tbody>
+          </table>
+		</div>
+	</div>
+	</div>
+
+	<a href="{% url 'polls:index' %}"> Back to Index </a>
+	{% endblock context %}

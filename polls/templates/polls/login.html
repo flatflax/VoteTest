@@ -1,0 +1,25 @@
+{% extends "polls/base/navbar.html" %}
+  {% block context %}
+    <h1>Login</h1>
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-warning" role="alert">
+      <p class="mb-0">{{ message }}</p>
+      </div>
+      {% endfor %}
+    {% endif %}
+    <form class="site-login" action="{% url 'polls:login' %}" method="POST">{% csrf_token %}
+      <dl>
+        <dt>Username:</dt>
+        <dd><input type="text" name="username" class="form-control col-sm-4" placeholder="Username"></dd>
+        <dt>Password:</dt>
+        <dd><input type="password" name="password" class="form-control col-sm-4" placeholder="Password"></dd>
+        <br>
+        <dd><input type="submit" class="btn btn-primary" value="Login"></dd>
+      </dl>
+    </form>
+    <a href="{% url 'polls:register' %}">Have not registered?</a>
+    {% if curtime %}
+    <p>{{ curtime }}</p>
+    {% endif %}
+  {% endblock context %}

@@ -151,3 +151,9 @@ view可以通过django或者其他第三方的Template系统读取数据库的�
 ## 确认用户登陆状态 ##
 
 `user.is_authenticated()`在template和view中都可以使用。
+
+## 分页 ##
+
+[参考文档地址](https://docs.djangoproject.com/en/2.1/topics/pagination/)
+
+`from django.core.paginator import Paginator`
